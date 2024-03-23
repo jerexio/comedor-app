@@ -1,9 +1,10 @@
 import { HomeStyle } from './styles'
-import { View, ScrollView, Text, SafeAreaView, Platform } from "react-native";
+import { View, ScrollView, Text, SafeAreaView, Platform, FlatList } from "react-native";
 import { useState, useEffect } from 'react';
 import { API_URL } from '@env';
 
 import HomeHeader from '../../components/Header/HomeHeader.jsx';
+import FoodCard from '../../components/FoodCard/FoodCard.jsx';
 
 //Debajo las constantes, luego mudarlas a un archivo
 const time = ["desayunos", "almuerzos", "meriendas"];
@@ -17,10 +18,9 @@ export default function Home(){
     //Fetch para obtener el menu a renderizar
     const fetchApi = async () => {
       try{
-        console.log("\n",API_URL);
-        const response = await fetch(API_URL);
+        const date = new Date().toISOString().substring(0,10);
+        const response = await fetch(API_URL+date);
         const menuRes = await response.json();
-        console.log(menuRes);
         setMenu(menuRes);
       }
       catch(error){
@@ -36,14 +36,12 @@ export default function Home(){
     return (
         <SafeAreaView style={[HomeStyle.container, HomeStyle.color]}>
             <HomeHeader currentPage={currentPage} setCurrentPage={setCurrentPage} setMenus={setMenu}/>
-            <ScrollView
-                horizontal
-                pagingEnabled
-                showsHorizontalScrollIndicator={false}
-            >
-                <Text>Opcion</Text>
-                <Text>Opcion 2</Text>
-            </ScrollView>
+            <FlatList
+              style={{height: "100%", width: "100%"}}
+              horizontal
+              data={menu[time[currentPage]]}
+              renderItem={({item}) => <FoodCard foodInfo={item}/>}
+            />
         </SafeAreaView>
     );
 }
