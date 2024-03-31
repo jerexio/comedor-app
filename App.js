@@ -1,3 +1,5 @@
+import { SafeAreaView, View } from "react-native";
+import MiniFoodCard from "./src/components/MiniFoodCard/MiniFoodCard";
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,7 +11,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
+    /*<NavigationContainer>
       <Stack.Navigator initialRouteName="Splash" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen
@@ -18,9 +20,15 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer>*/
+    <View style={style.card}>
+      <MiniFoodCard subMenu={{"nombre":"src/components/MiniFoodCard/MiniFoodCard", "foto":"https://assets.unileversolutions.com/recipes-v2/209413.jpg"}}/>
+    </View>
   );
 }
+
+//DELETE
+import { Dimensions, StyleSheet, useWindowDimensions } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -29,4 +37,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  //Delete
+  card: {
+    marginTop: 30,
+    marginHorizontal: 20,
+  }
 });

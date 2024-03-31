@@ -1,10 +1,12 @@
-import { HomeStyle } from './styles'
+import { HomeStyle } from './styles.jsx'
 import { View, ScrollView, Text, SafeAreaView, Platform, FlatList } from "react-native";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { API_URL } from '@env';
 
 import HomeHeader from '../../components/Header/HomeHeader.jsx';
 import FoodCard from '../../components/FoodCard/FoodCard.jsx';
+
+//import menus from '../../../database/db_menus.js';
 
 //Debajo las constantes, luego mudarlas a un archivo
 const time = ["desayunos", "almuerzos", "meriendas"];
@@ -16,20 +18,23 @@ export default function Home(){
     const [currentPage, setCurrentPage] = useState("Desayuno" | "Almuerzo" | "Merienda");
     //Fetch para obtener el menu a renderizar
     const fetchApi = async () => {
-  try {
-    const date = new Date().toISOString().substring(0, 10);
-    const response = await fetch(API_URL + date);
-    const menuRes = await response.json();
-    setMenu(menuRes);
-  } catch (error) {
-    console.error("Error al obtener datos:", error);
-    // Opcionalmente, muestra un mensaje de error amigable para el usuario
-  }
-};
+      try {
+        const date = new Date().toISOString().substring(0, 10);
+        const link = API_URL+date;
+        const response = await fetch(link);
+        const menuRes = await response.json();
+        setMenu(menuRes);
+      } catch (error) {
+        console.error("Error al obtener datos:", error);
+        // Opcionalmente, muestra un mensaje de error amigable para el usuario
+      }
+    };
     //UseEffect para que se realice el llamado al fetch
     useEffect(() => {
       fetchApi();
     }, []);
+
+    const renderize = useCallback(({item}) => <FoodCard foodInfo={item}/>, []);
 
     //La condicion despues del HomeHeader significa que renderiza el menu si existe uno con la fecha actual
     return (
@@ -37,10 +42,11 @@ export default function Home(){
         <HomeHeader currentPage={currentPage} setCurrentPage={setCurrentPage} />
         {menu && menu[time[currentPage]] && (
           <FlatList
-          style={{height: "100%", width: "100%"}}
-          horizontal
+            style={{height: "100%", width: "100%"}}
+            horizontal
+            pagingEnabled={true}
             data={menu[time[currentPage]]}
-            renderItem={({ item }) => <FoodCard foodInfo={item} />}
+            renderItem={renderize}
           />
         )}
       </SafeAreaView>
