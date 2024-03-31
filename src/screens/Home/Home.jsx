@@ -14,34 +14,35 @@ export default function Home(){
     const [menu, setMenu] = useState();
     //Para indicar en Home en que pagina estamos
     const [currentPage, setCurrentPage] = useState("Desayuno" | "Almuerzo" | "Merienda");
-
     //Fetch para obtener el menu a renderizar
     const fetchApi = async () => {
-      try{
-        const date = new Date().toISOString().substring(0,10);
-        const response = await fetch(API_URL+date);
-        const menuRes = await response.json();
-        setMenu(menuRes);
-      }
-      catch(error){
-        console.error(error);
-      }
-    }
-    
+  try {
+    const date = new Date().toISOString().substring(0, 10);
+    const response = await fetch(API_URL + date);
+    const menuRes = await response.json();
+    setMenu(menuRes);
+  } catch (error) {
+    console.error("Error al obtener datos:", error);
+    // Opcionalmente, muestra un mensaje de error amigable para el usuario
+  }
+};
     //UseEffect para que se realice el llamado al fetch
     useEffect(() => {
       fetchApi();
     }, []);
 
+    //La condicion despues del HomeHeader significa que renderiza el menu si existe uno con la fecha actual
     return (
-        <SafeAreaView style={[HomeStyle.container, HomeStyle.color]}>
-            <HomeHeader currentPage={currentPage} setCurrentPage={setCurrentPage} setMenus={setMenu}/>
-            <FlatList
-              style={{height: "100%", width: "100%"}}
-              horizontal
-              data={menu[time[currentPage]]}
-              renderItem={({item}) => <FoodCard foodInfo={item}/>}
-            />
-        </SafeAreaView>
+      <SafeAreaView style={[HomeStyle.container, HomeStyle.color]}>
+        <HomeHeader currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        {menu && menu[time[currentPage]] && (
+          <FlatList
+          style={{height: "100%", width: "100%"}}
+          horizontal
+            data={menu[time[currentPage]]}
+            renderItem={({ item }) => <FoodCard foodInfo={item} />}
+          />
+        )}
+      </SafeAreaView>
     );
-}
+};
