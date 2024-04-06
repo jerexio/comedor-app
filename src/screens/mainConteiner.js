@@ -45,15 +45,28 @@ function MainContainer() {
         tabBarStyle: { display: 'flex' },
       })}
       >
-        <Tab.Screen 
+      <Tab.Screen 
         name={homeName} 
-        component={Home} 
+        component={Home}
         options={{ 
           headerShown: false // Oculta la barra de navegación superior
-        }} 
+        }} />
+
+      <Tab.Screen
+        name={proximasName}
+        component={Proximas}
+        options={{ 
+          headerShown: false // Oculta la barra de navegación superior
+        }}
       />
-      <Tab.Screen name={proximasName} component={Proximas} />
-      <Tab.Screen name={informacionName} component={Informacion} />
+
+      <Tab.Screen
+        name={informacionName}
+        component={Informacion}
+        options={{ 
+          headerShown: false // Oculta la barra de navegación superior
+        }}
+      />
     </Tab.Navigator>
   );
 }

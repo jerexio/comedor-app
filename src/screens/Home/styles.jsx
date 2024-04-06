@@ -6,5 +6,9 @@ export const HomeStyle = StyleSheet.create({
     },
     color: {
         backgroundColor: '#dc8c13'
+    },
+    item:{
+        height: "100%",
+        width: "100%",
     }
 });

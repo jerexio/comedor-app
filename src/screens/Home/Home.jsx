@@ -1,12 +1,9 @@
 import { HomeStyle } from './styles.jsx'
-import { View, ScrollView, Text, SafeAreaView, Platform, FlatList } from "react-native";
+import { SafeAreaView, FlatList } from "react-native";
 import { useState, useEffect, useCallback } from 'react';
 import { API_URL } from '@env';
-
-import HomeHeader from '../../components/Header/HomeHeader.jsx';
+import HomeHeader from '../../components/HomeHeader/HomeHeader.jsx';
 import FoodCard from '../../components/FoodCard/FoodCard.jsx';
-
-//import menus from '../../../database/db_menus.js';
 
 //Debajo las constantes, luego mudarlas a un archivo
 const time = ["desayunos", "almuerzos", "meriendas"];
@@ -34,7 +31,7 @@ export default function Home(){
       fetchApi();
     }, []);
 
-    const renderize = useCallback(({item}) => <FoodCard foodInfo={item}/>, []);
+    const renderize = useCallback(({item}) => {return <FoodCard foodInfo={item}/>}, []);
 
     //La condicion despues del HomeHeader significa que renderiza el menu si existe uno con la fecha actual
     return (
@@ -42,11 +39,12 @@ export default function Home(){
         <HomeHeader currentPage={currentPage} setCurrentPage={setCurrentPage} />
         {menu && menu[time[currentPage]] && (
           <FlatList
-            style={{height: "100%", width: "100%"}}
+            style={HomeStyle.item}
             horizontal
             pagingEnabled={true}
             data={menu[time[currentPage]]}
             renderItem={renderize}
+            fadingEdgeLength={10}
           />
         )}
       </SafeAreaView>

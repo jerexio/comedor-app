@@ -2,8 +2,8 @@ import { Dimensions, StyleSheet } from "react-native";
 
 const {width, height} = Dimensions.get("window");
 
-const cardWidth = width - (width*10/100)
-const cardHeight = height - (height*30/100);
+const cardWidth = width*90/100
+const cardHeight = height*70/100;
 
 export const FoodStyle = StyleSheet.create({
     card: {
@@ -11,7 +11,7 @@ export const FoodStyle = StyleSheet.create({
         height: cardHeight,
         borderRadius: 20,
         marginTop: 30,
-        marginHorizontal: 20,
+        marginHorizontal: 10,
 
         backgroundColor: "#000",
         shadowColor: "#000",
