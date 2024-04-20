@@ -1,8 +1,7 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import {width, height} from '../../consts/consts'
 
-const {width, height} = Dimensions.get("window");
-
-const cardWidth = width*90/100
+const cardWidth = width*90/100;
 const cardHeight = height*70/100;
 
 export const FoodStyle = StyleSheet.create({
@@ -10,9 +9,8 @@ export const FoodStyle = StyleSheet.create({
         width: cardWidth,
         height: cardHeight,
         borderRadius: 20,
-        marginTop: 30,
-        marginHorizontal: 10,
-
+        marginTop: 25,
+        marginHorizontal: width*5/100,
         backgroundColor: "#000",
         shadowColor: "#000",
         elevation: 11,
@@ -37,13 +35,14 @@ export const FoodStyle = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        
     },
     text: {
         color: 'white',
         fontSize: 25,
         lineHeight: 25,
         fontWeight: 'bold',
-        width: cardWidth*70/100
+        width: cardWidth*70/100,
     },
     icon: {
         color: 'white',
@@ -51,17 +50,23 @@ export const FoodStyle = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: "center",
     },
-    remainBox:{
-        backgroundColor: "#13b10c",
+    remainBox: {
         borderRadius: 10,
         marginTop: cardHeight*5/100,
         marginLeft: cardWidth*50/100,
         marginRight: cardWidth*5/100,
         opacity: 1
     },
+    remainBoxNotEmpty: {
+        backgroundColor: "#13b10c"
+    },
+    remainBoxEmpty: {
+        backgroundColor: "#ff0000",
+    },
     remaining: {
         color: "#FFF",
         fontWeight: "bold",
+        textAlign: "center",
         fontSize: 20,
         padding: 5
     }

@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { View, FlatList, ActivityIndicator, Text } from 'react-native';
-import ComingStyle from './styles.jsx';
+import ComingStyle from './styles';
 import ComingMenu from '../../components/ComingMenu/ComingMenu.jsx';
 import Header from '../../components/Header/Header.jsx'
 import {API_URL_COMING} from '@env';
-
+import { COMING_TITLE } from '../../consts/consts.js';
 
 export default function Proximas({ navigation }) {
     const [comingMenus, setComingMenus] = useState([]);
@@ -15,7 +15,6 @@ export default function Proximas({ navigation }) {
     const fetchPage = async (url, existingMenus) => {
         setLoading(true);
         try{
-            console.log(url);
             const response = await fetch(url);
             const menuRes = await response.json();
             setComingMenus(comingMenus.concat(menuRes.result));
@@ -37,7 +36,6 @@ export default function Proximas({ navigation }) {
     //UseEffect para que se realice el llamado al fetch
     useEffect(() => {
         setComingMenus([]);
-        console.log("Aqui"+comingMenus);
         fetchPage(API_URL_COMING, comingMenus);
     }, []);
 
@@ -46,7 +44,7 @@ export default function Proximas({ navigation }) {
 
     return (
         <View style={ComingStyle.background}>
-            <Header style={ComingStyle.headerBox} title={"Proximas"}/>
+            <Header style={ComingStyle.headerBox} title={COMING_TITLE}/>
             <View style={ComingStyle.container}>
                 <FlatList
                     style={ComingStyle.item}

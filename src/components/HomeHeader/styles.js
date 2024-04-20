@@ -27,5 +27,12 @@ export const HeaderStyle = StyleSheet.create({
         borderRadius: 100,
         borderBottomColor: "#d7c4a3",
         alignItems: "center"
+    },
+    itemNotSelected: {
+        borderColor: "transparent"
+    },
+    text: {
+        fontSize: 15,
+        fontWeight: '400'
     }
 });

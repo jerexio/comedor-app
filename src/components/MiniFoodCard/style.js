@@ -1,6 +1,5 @@
-import { Dimensions, StyleSheet } from "react-native";
-
-const {width, height} = Dimensions.get("window");
+import { StyleSheet } from "react-native";
+import { height, width } from "../../consts/consts";
 
 const cardWidth = width*90/100;
 const cardHeight = height*40/100;

@@ -1,48 +1,70 @@
-import { Image, Modal, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Image, Pressable, Text, TouchableWithoutFeedback, View } from "react-native";
 import { FoodStyle } from "./styles";
 import Icon from "react-native-vector-icons/FontAwesome"
-import { useEffect, useState } from "react";
-import ModalFood from "../ModalFood/ModalFood";
+import { useEffect, useReducer, useState } from "react";
+import { useNavigation, useIsFocused } from '@react-navigation/native';
+import foodReducer from "./foodReducer";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { HEART, MODAL_NAME, NOHEART } from "../../consts/consts";
 
 //Este componente representa una 'card' pero con un diseño especializado
-export default function Food({ foodInfo }){
-    const [heartState, setHeartState] = useState("heart-o");
-    const [modalVisible, setModalVisible] = useState(false);
-    const [remaing, setRemaing] = useState(foodInfo.reservas);
-    const [liked, setLiked] = useState(foodInfo.likes);
- 
+const FoodCard = ({ idFood }) => {
+    const {getItem} = useLocalStorage();
+    const navigation = useNavigation();
+    const isFocused = useIsFocused();
+    const [food, setFood] = useState(getItem(idFood));
+    const [heartState, setHeartState] = useState(food.liked ? HEART : NOHEART);
+    const [remaingState, setRemaingState] = useState();
+    const [objFood, dispatch] = useReducer(foodReducer, food);
+
+    const getFood = () => {
+        const foodObj = getItem(idFood);
+        setFood(foodObj);
+        setRemaingState(foodObj.reservas > 0 ? FoodStyle.remainBoxNotEmpty : FoodStyle.remainBoxEmpty);
+    }
+    
+    useEffect(() => {
+        getFood();
+    }, [isFocused]);
+
     //Actualiza el estado del corazon si es presionado
-    const update = () => {
-        let newHeart = heartState.localeCompare("heart-o") == 0 ? "heart" : "heart-o";
+    const handlePressHeart = () => {
+        const newHeart = heartState.localeCompare(NOHEART) == 0 ? HEART : NOHEART;
         setHeartState(newHeart);
-        setLiked(heartState.localeCompare("heart-o") == 0 ? liked+1 : liked-1);
+        dispatch({
+            type: newHeart
+        });
+    }
+
+    const handlePressCard = ()=>{
+        navigation.navigate({
+            name: MODAL_NAME,
+            params:{ id: idFood }
+        });
     }
 
     return(
         <View>
-            <ModalFood
-                stateModalVisible= {{modalVisible, setModalVisible}}
-                infoFood={foodInfo}
-                stateRemaing={{remaing, setRemaing}}
-                stateLike={{liked, setLiked}}
-            />
-            <TouchableWithoutFeedback onPress={()=>{setModalVisible(true)}}>
+            {food &&
+            <TouchableWithoutFeedback onPress={handlePressCard}>
                 <View style={FoodStyle.card}>
                     <Image
                         style={FoodStyle.image}
                         resizeMode="cover"
                         loadingIndicatorSource={require("../../../assets/loading.gif")}
-                        src={foodInfo.foto}
+                        src={food.foto}
                     />
-                    <Text style={[FoodStyle.remainBox, FoodStyle.remaining]}>{remaing} Restantes</Text>
+                    <Text style={[FoodStyle.remainBox, FoodStyle.remaining, remaingState]}>{food.reservas} Restantes</Text>
                     <View style={FoodStyle.endRowBox}>
-                        <Text numberOfLines={2} style={FoodStyle.text}>{foodInfo.nombre}</Text>
-                        <Pressable onPress={update}>
+                        <Text numberOfLines={2} style={FoodStyle.text}>{food.nombre}</Text>
+                        <Pressable onPress={handlePressHeart}>
                             <Icon name={heartState} style={FoodStyle.icon} />
                         </Pressable>
                     </View>
                 </View>
-            </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>}
         </View>
     );
 }
+
+export default FoodCard;

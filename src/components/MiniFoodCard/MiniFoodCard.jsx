@@ -1,6 +1,6 @@
-import { Image, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { MiniCardStyle } from "./style";
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const MiniFoodCard = ({subMenu}) => {
 

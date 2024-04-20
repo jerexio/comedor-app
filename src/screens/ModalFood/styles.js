@@ -2,50 +2,53 @@ import { Dimensions, StyleSheet } from "react-native";
 
 const {width, height} = Dimensions.get("window");
 
-const modalWidth = width*95/100
-const modalHeight = height*95/100;
+const modalWidth = width;
+const modalHeight = height;
 
 const ModalFoodStyle = StyleSheet.create({
-    background: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: "absolute",
-    },
     modalContainer: {
+        flex: 1,
         backgroundColor: "#000",
-        marginHorizontal: 10,
-        marginTop: 14,
-        borderRadius: 20,
-        borderColor: "#00a5ef",
-        borderWidth: 3,
         width: modalWidth,
         height: modalHeight
     },
-    image: {
+    imageBackground: {
         width: "100%",
-        height: "80%",
-        borderRadius: 20,
+        height: "100%",
         position: "absolute",
-        opacity: 0.35
+        opacity: 0.2
+    },
+    imageView: {
+        width: "100%",
+        height: modalHeight*30/100,
+        borderRadius: 10
     },
     upperRow: {
         flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-around",
+    },
+    upperCol: {
+        flexDirection: "column",
         alignItems: "baseline",
         justifyContent: "space-around",
     },
     price: {
         color: "#FFF",
-        fontWeight: "bold",
+        fontWeight: "900",
         fontSize: 20,
         padding: 5,
-        textAlign: "center"
+        textAlign: "center",
     },
     remainBox:{
-        backgroundColor: "#13b10c",
         borderRadius: 10,
-        marginTop: modalWidth*5/100,
         opacity: 1
+    },
+    remainBoxNotEmpty: {
+        backgroundColor: "#13b10c"
+    },
+    remainBoxEmpty: {
+        backgroundColor: "#ff0000",
     },
     remaining: {
         color: "#FFF",
@@ -54,38 +57,35 @@ const ModalFoodStyle = StyleSheet.create({
         padding: 5,
         textAlign: "center"
     },
-    lowerRow: {
+    lowerCol: {
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-evenly",
-        marginTop: modalHeight*50/100
+        justifyContent: "space-between",
     },
     title: {
         color: 'white',
         fontSize: 30,
         lineHeight: 30,
         fontWeight: 'bold',
+        marginTop: 10
     },
     liked: {
         color: 'white',
         fontSize: 15,
         lineHeight: 15,
-        marginTop: 20,
-        marginHorizontal: 15
+        marginTop: 15
     },
     button: {
-        backgroundColor: "#ff8c00",
         width: modalWidth*90/100,
         padding: 10,
         borderRadius: 20,
-        marginTop: 10
+        marginVertical: 15
+    },
+    buttonUnlocked: {
+        backgroundColor: "#ff8c00",
     },
     buttonLocked: {
-        backgroundColor: "#3c3c3c",
-        width: modalWidth*90/100,
-        padding: 10,
-        borderRadius: 20,
-        marginTop: 10
+        backgroundColor: "#5c5c5c"
     },
     buttonText: {
         color: '#000',
@@ -98,8 +98,8 @@ const ModalFoodStyle = StyleSheet.create({
         color: 'white',
         fontSize: 20,
         lineHeight: 20,
-        marginTop: 20,
-        marginHorizontal: 15
+        marginHorizontal: 15,
+        textAlign: "center"
     }
 });
 
