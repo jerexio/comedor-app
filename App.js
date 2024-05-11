@@ -19,6 +19,7 @@ export default function App() {
           component={MainContainer}
           options={{ headerShown: false }}
         />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

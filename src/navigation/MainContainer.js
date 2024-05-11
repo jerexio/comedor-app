@@ -3,6 +3,8 @@ import ModalFood from '../screens/ModalFood/ModalFood';
 import BottomTab from './BottomTab';
 import { BOTTOM_NAME, MODAL_NAME } from '../consts/consts';
 const Stack = createNativeStackNavigator();
+import Form from '../screens/Form/form';
+import Informacion from '../screens/Information/Informacion';
 
 const MainContainer = () => {
     return(
@@ -20,6 +22,16 @@ const MainContainer = () => {
           options={{
             headerShown: false
           }}
+        />
+        <Stack.Screen
+          name="form"
+          component={Form}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="informacion"
+          component={Informacion}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     );
