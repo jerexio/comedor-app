@@ -7,11 +7,11 @@ export const {height, width} = Dimensions.get('window');
 /***********************************************************
  * IMAGES
  ***********************************************************/
-export const FAI_LOGO = require('../../../assets/fai.png');
-export const UNCO_LOGO = require('../../../assets/unco.png');
+export const FAI_LOGO = require('../../assets/fai.png');
+export const UNCO_LOGO = require('../../assets/unco.png');
 export const LOADING_GIF = require("../../assets/loading.gif");
-export const COMEDOR_IMG = require('../../../assets/comedor.png');
-export const MAP_IMG = require('../../../assets/Mapa_comedor.png');
+export const COMEDOR_IMG = require('../../assets/comedor.png');
+export const MAP_IMG = require('../../assets/Mapa_comedor.png');
 
 /***********************************************************
  * NAVIGATION NAMES
@@ -72,8 +72,8 @@ export const LIKES_TEXT = ' personas indicaron que les gusto';
 export const NOTEXT = '';
 
 export const BOUGHT = "Comprado";
-export const BUY = "Comprado";
-export const UNAVAILABLE = "Comprado";
+export const BUY = "Comprar";
+export const UNAVAILABLE = "No disponible";
 
 /***********************************************************
  * INFORMATION SCREEN
