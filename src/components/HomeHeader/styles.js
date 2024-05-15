@@ -1,16 +1,17 @@
 import { StyleSheet } from "react-native";
+import { BACKGROUND_COLOR, WHITE } from "../../consts/consts";
 
 export const HeaderStyle = StyleSheet.create({
     headerBox: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: WHITE,
         padding: 10,
         paddingTop: 30
     },
     containerButtonsBox: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: WHITE,
         width: '100%',
-        borderBottomEndRadius: 30,
-        borderBottomStartRadius: 30,
+        borderBottomEndRadius: 25,
+        borderBottomStartRadius: 25,
         marginTop: -15,
         padding: 0,
     },
@@ -25,7 +26,7 @@ export const HeaderStyle = StyleSheet.create({
         padding: 5,
         marginVertical: 10,
         borderRadius: 100,
-        borderBottomColor: "#d7c4a3",
+        borderBottomColor: BACKGROUND_COLOR,
         alignItems: "center"
     },
     itemNotSelected: {

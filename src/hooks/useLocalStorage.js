@@ -1,8 +1,11 @@
 import SyncStorage from 'sync-storage';
 
+/**
+ * Hook utilizado para almacenar el Menu de hoy.
+ * @returns 
+ */
 const useLocalStorage =  () => {
     const clearStorage = () => {
-        SyncStorage.init();
         SyncStorage.getAllKeys().forEach((key) => SyncStorage.remove(key));
     };
 

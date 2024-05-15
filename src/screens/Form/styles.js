@@ -1,4 +1,5 @@
 import { StyleSheet,Dimensions } from "react-native";
+import { BACKGROUND_COLOR, BLACK, ERROR_TEXT, GREY, WHITE } from "../../consts/consts";
 // Estilos
 const { width, height } = Dimensions.get("window");
 const formWidth = width * 90 / 100;
@@ -14,10 +15,10 @@ form: {
   width: formWidth,
   flexDirection: 'column',
   justifyContent: "space-between",
-  backgroundColor: 'white',
+  backgroundColor: WHITE,
   padding: 20,
   borderRadius: 10,
-  shadowColor: 'black',
+  shadowColor: BLACK,
   shadowOffset: {
     width: 0,
     height: 2,
@@ -29,19 +30,19 @@ form: {
 },
 label: {
   fontSize: 25,
-  color: '#dc8c13',
+  color: BACKGROUND_COLOR,
   alignSelf: "center"
 },
 sublabel:{
   alignSelf: 'center',
   fontSize: 23,
   marginTop: 5,
-  color: 'black',
+  color: BLACK,
   fontWeight: 'bold',
 },
 input: {
   height: 40,
-  borderColor: '#ddd',
+  borderColor: GREY,
   borderWidth: 1,
   padding: 10,
   borderRadius: 5,
@@ -56,7 +57,7 @@ dateInputContainer: {
 dateInput: {
   flex: 1,
   height: 40,
-  borderColor: '#ddd',
+  borderColor: GREY,
   borderWidth: 1,
   paddingHorizontal: 10,
   borderRadius: 5,
@@ -68,7 +69,7 @@ text: {
   fontSize: 16
 },
 button: {
-  backgroundColor: '#dc8c13',
+  backgroundColor: BACKGROUND_COLOR,
   alignItems: 'center',
   justifyContent: 'center',
   height: 40,
@@ -76,13 +77,27 @@ button: {
   marginTop: 2
 },
 buttonText: {
-  color: 'white',
+  color: WHITE,
   fontWeight: 'bold',
 },
 errorText: {
-  color: "red",
+  color: ERROR_TEXT,
   marginBottom: -5,
 },
-
-
+loading:{
+  height: height * 30 / 100,
+  width: formWidth,
+  marginHorizontal: width * 5 / 100,
+  marginVertical: height * 35 / 100,
+  flexDirection: 'column',
+  justifyContent: "space-around",
+  backgroundColor: WHITE,
+  borderRadius: 10,
+},
+textLoading:{
+  fontSize: 25,
+  color: BLACK,
+  textAlign: 'center',
+  fontWeight: 'bold',
+}
 });

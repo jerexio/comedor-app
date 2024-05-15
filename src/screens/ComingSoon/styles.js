@@ -1,16 +1,17 @@
 import { StyleSheet } from "react-native";
+import { BACKGROUND_COLOR, WHITE } from "../../consts/consts";
 
 const ComingStyle = StyleSheet.create({
     background: {
-        backgroundColor: '#dc8c13'
+        backgroundColor: BACKGROUND_COLOR
     },
     headerBox: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: WHITE,
         padding: 20,
         paddingTop: 40,
         width: '100%',
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        borderBottomLeftRadius: 25,
+        borderBottomRightRadius: 25,
     },
     container: {
         marginBottom: 200
@@ -18,7 +19,7 @@ const ComingStyle = StyleSheet.create({
     emptyList: {
         fontSize: 32,
         fontWeight: "bold",
-        backgroundColor: "#fff",
+        backgroundColor: WHITE,
         padding: 5,
         borderRadius: 15,
         margin: 20,

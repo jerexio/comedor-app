@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import BackButton from "../../components/BackButton/BackButton";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import handleBuy from "../../services/handleBuy";
-import { BOUGHT, BUY, LIKES_TEXT, LIKE_TEXT, NOTEXT, UNAVAILABLE } from "../../consts/consts";
+import { BOUGHT, BUY, LIKES_TEXT, LIKE_TEXT, LOADING_GIF, NOTEXT, UNAVAILABLE } from "../../consts/consts";
 
-
+/**
+ * Screen que renderiza el modal con toda la informacion relevante sobre un menu.
+ * @returns 
+ */
 const ModalFood = ({navigation, route}) => {
+    // Se obtiene el menu a renderizar, a partir de un parametro id
     const {id} = route.params;
     const {getItem} = useLocalStorage();
     const [infoFood, setInfoFood] = useState(getItem(id));
@@ -30,14 +34,17 @@ const ModalFood = ({navigation, route}) => {
         }]);
     }
 
+    //Maneja lo que ocurre cuando se presiona el boton back
     const handlerPressBack = () => {
         navigation.goBack();
     }
 
+    //Renderiza el texto segun la cantidad de likes
     const showLiked =  infoFood.likes > 0 ?
             (infoFood.likes === 1? `${infoFood.likes}`+LIKE_TEXT :
                                     `${infoFood.likes}`+LIKES_TEXT) : NOTEXT;
 
+    //Obtiene el menu
     const getFood = (id) => {
         const food = getItem(id);
         setInfoFood(food);
@@ -50,6 +57,7 @@ const ModalFood = ({navigation, route}) => {
         setDisableButton(comprado || !disponible);
     }
 
+    //Efecto para obtener el menu
     useEffect(() => {
         getFood(id)
     }, []);
@@ -59,7 +67,7 @@ const ModalFood = ({navigation, route}) => {
             <Image
                 style={ModalFoodStyle.imageBackground}
                 resizeMode="cover"
-                loadingIndicatorSource={require("../../../assets/loading.gif")}
+                loadingIndicatorSource={LOADING_GIF}
                 src={infoFood.foto}
             />
             <BackButton pressAction={handlerPressBack}/>
@@ -73,7 +81,7 @@ const ModalFood = ({navigation, route}) => {
             <Image
                 style={ModalFoodStyle.imageView}
                 resizeMode="cover"
-                loadingIndicatorSource={require("../../../assets/loading.gif")}
+                loadingIndicatorSource={LOADING_GIF}
                 src={infoFood.foto}
             />
             <View style={ModalFoodStyle.lowerCol}>

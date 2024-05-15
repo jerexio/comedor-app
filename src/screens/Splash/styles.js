@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native";
+import { WHITE } from "../../consts/consts";
 
 const SplashStyle = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white',
+      backgroundColor: WHITE,
     },
     imageUnco: {
       width: 250,

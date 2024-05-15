@@ -5,9 +5,13 @@ import { useEffect, useReducer, useState } from "react";
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import foodReducer from "./foodReducer";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import { HEART, MODAL_NAME, NOHEART } from "../../consts/consts";
+import { HEART, LOADING_GIF, MODAL_NAME, NOHEART } from "../../consts/consts";
 
-//Este componente representa una 'card' pero con un diseño especializado
+/**
+ * Componente que renderiza cada 'card' de comida en la screen Home/Home.
+ * @param idFood --> Representa el id de una comida a renderizar
+ * @returns 
+ */
 const FoodCard = ({ idFood }) => {
     const {getItem} = useLocalStorage();
     const navigation = useNavigation();
@@ -17,12 +21,14 @@ const FoodCard = ({ idFood }) => {
     const [remaingState, setRemaingState] = useState();
     const [objFood, dispatch] = useReducer(foodReducer, food);
 
+    //Obtiene del almacenamiento local la comida para el idFood
     const getFood = () => {
         const foodObj = getItem(idFood);
         setFood(foodObj);
         setRemaingState(foodObj.reservas > 0 ? FoodStyle.remainBoxNotEmpty : FoodStyle.remainBoxEmpty);
     }
     
+    //Cuando se hace focus a este componente se debe actualizar.
     useEffect(() => {
         getFood();
     }, [isFocused]);
@@ -36,6 +42,7 @@ const FoodCard = ({ idFood }) => {
         });
     }
 
+    //Al presionar la 'card' se navega hacia su modal
     const handlePressCard = ()=>{
         navigation.navigate({
             name: MODAL_NAME,
@@ -51,7 +58,7 @@ const FoodCard = ({ idFood }) => {
                     <Image
                         style={FoodStyle.image}
                         resizeMode="cover"
-                        loadingIndicatorSource={require("../../../assets/loading.gif")}
+                        loadingIndicatorSource={LOADING_GIF}
                         src={food.foto}
                     />
                     <Text style={[FoodStyle.remainBox, FoodStyle.remaining, remaingState]}>{food.reservas} Restantes</Text>

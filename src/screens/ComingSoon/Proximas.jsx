@@ -5,28 +5,33 @@ import ComingMenu from '../../components/ComingMenu/ComingMenu.jsx';
 import Header from '../../components/Header/Header.jsx'
 import {API_URL_COMING} from '@env';
 import { COMING_TITLE } from '../../consts/consts.js';
+import { getComingMenus } from '../../services/getComingMenus.js';
 
+/**
+ * Screen que obtiene menus futuros desde el backend y los muestra
+ * en forma de lista ordenados por fecha.
+ * Carga un componente nuevo cuando se llega al final de la lista.
+ * @returns 
+ */
 export default function Proximas({ navigation }) {
     const [comingMenus, setComingMenus] = useState([]);
     const [loading, setLoading] = useState(false);
     const [reload, setReload] = useState(false);
     const [nextPage, setNextPage] = useState();
 
-    const fetchPage = async (url, existingMenus) => {
+    //Realiza el fetch y agrega el resultado a la lista para ser renderizado
+    const fetchPage = (url, existingMenus) => {
         setLoading(true);
-        try{
-            const response = await fetch(url);
-            const menuRes = await response.json();
-            setComingMenus(comingMenus.concat(menuRes.result));
-            setNextPage(menuRes.info.next);
-        }
-        catch(error){
-        }
-        finally{
-            setLoading(false);
-        }
+        getComingMenus(url)
+            .then((response) => {
+                setComingMenus(comingMenus.concat(response.result));
+                setNextPage(response.info.next);
+            })
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false));
     };
 
+    //Cuando se recarga la pagina
     const refresh = () => {
         setComingMenus([]);
         setNextPage(API_URL_COMING);
@@ -39,7 +44,10 @@ export default function Proximas({ navigation }) {
         fetchPage(API_URL_COMING, comingMenus);
     }, []);
 
-    const renderize = useCallback(({item}) => <ComingMenu menu={item}/>, []);
+    //Renderiza cada submenu
+    const renderize = useCallback(({item, index}) => <ComingMenu menu={item}/>, []);
+    
+    //Si no hay menus renderiza un mensaje
     const emptyRenderize = useCallback(() => <Text style={[ComingStyle.emptyList]}>No hay menus disponibles</Text>, []);
 
     return (

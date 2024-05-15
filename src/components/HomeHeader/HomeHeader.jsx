@@ -3,8 +3,16 @@ import {HeaderStyle} from "./styles"
 import Header from "../Header/Header";
 import { HOME_TITLE, VIEWS } from "../../consts/consts";
 
+/**
+ * Componente que renderiza el Header para la screen Home/Home.
+ * Su uso es para que el usuario se pueda desplazar en las distintas
+ * pestañas "Desayuno", "Almuerzo", "Merienda".
+ * @param currentPage
+ * @param setCurrentPage
+ * @returns 
+ */
 export default function HomeHeader({currentPage, setCurrentPage}){
-    //Cambia la vista seleccionada
+    //Actualiza la vista seleccionada
     function handlePress(index){
         setCurrentPage(index);
     }

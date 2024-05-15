@@ -1,5 +1,9 @@
 import { ERROR_MESSAGES } from "../consts/consts";
 
+/**
+ * Funcion que verifica la validez de una comida para realizar el POST al backend
+ * @returns 
+ */
 const validateForm = (fecha, nombre, ingredientes, precio, precioCarnet, urlFoto,reservas,setErrors) => {
     let error = {};
     

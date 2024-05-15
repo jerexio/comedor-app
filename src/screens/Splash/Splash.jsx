@@ -2,14 +2,21 @@ import SplashStyle from "./styles";
 import { View} from "react-native";
 import { useEffect } from "react";
 import * as Animatable from 'react-native-animatable';
-import { MAIN_NAME } from "../../consts/consts";
+import { FAI_LOGO, MAIN_NAME, UNCO_LOGO } from "../../consts/consts";
+import { StackActions } from "@react-navigation/native";
 
+/**
+ * Screen que se muestra el inicio de la aplicacion.
+ * @returns 
+ */
 const Splash = ({ navigation }) => { 
-    const imageFai = require('../../../assets/fai.png');
-    const imageUnco = require('../../../assets/unco.png');
+    const imageFai = FAI_LOGO;
+    const imageUnco = UNCO_LOGO;
+
+    //Efecto que elimina el splash de la pila de navegacion
     useEffect(() => {
         setTimeout(() => {
-            navigation.navigate(MAIN_NAME);
+            navigation.dispatch(StackActions.replace(MAIN_NAME));
         }, 5000);
     }, []); 
 

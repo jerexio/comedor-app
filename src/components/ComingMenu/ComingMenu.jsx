@@ -3,19 +3,27 @@ import { View } from "react-native-animatable";
 import MiniFoodCard from "../MiniFoodCard/MiniFoodCard";
 import MenuComingStyle from "./styles";
 
+/**
+ * Componente que renderiza cada menu para la screen ComingSoon/Proximas.
+ * @param menu --> JSON a renderizar
+ * @returns 
+ */
 const ComingMenu = ({menu}) => {
     return(
         <View style={MenuComingStyle.container}>
             <Text style={MenuComingStyle.text}>{menu.fecha.day} / {menu.fecha.month} / {menu.fecha.year}</Text>
             <Text style={MenuComingStyle.text}>Desayunos</Text>
-            <MiniFoodCard subMenu={menu.desayunos[0]}/>
-            <MiniFoodCard subMenu={menu.desayunos[1]}/>
+            {menu.desayunos.map((item, index) => (
+                <MiniFoodCard subMenu={item}/>
+            ))}
             <Text style={MenuComingStyle.text}>Almuerzos</Text>
-            <MiniFoodCard subMenu={menu.almuerzos[0]}/>
-            <MiniFoodCard subMenu={menu.almuerzos[1]}/>
+            {menu.almuerzos.map((item, index) => (
+                <MiniFoodCard subMenu={item}/>
+            ))}
             <Text style={MenuComingStyle.text}>Meriendas</Text>
-            <MiniFoodCard subMenu={menu.meriendas[0]}/>
-            <MiniFoodCard subMenu={menu.meriendas[1]}/>
+            {menu.meriendas.map((item, index) => (
+                <MiniFoodCard subMenu={item}/>
+            ))}
         </View>
     );
 }

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import {width, height} from '../../consts/consts'
+import {width, height, BLACK, WHITE, GREEN, RED} from '../../consts/consts'
 
 const cardWidth = width*90/100;
 const cardHeight = height*70/100;
@@ -11,10 +11,10 @@ export const FoodStyle = StyleSheet.create({
         borderRadius: 20,
         marginTop: 25,
         marginHorizontal: width*5/100,
-        backgroundColor: "#000",
-        shadowColor: "#000",
+        backgroundColor: BLACK,
+        shadowColor: BLACK,
         elevation: 11,
-        shadowColor: "#000",
+        shadowColor: BLACK,
         shadowOffset: {
             width: 0,
             height: 5,
@@ -38,14 +38,14 @@ export const FoodStyle = StyleSheet.create({
         
     },
     text: {
-        color: 'white',
+        color: WHITE,
         fontSize: 25,
         lineHeight: 25,
         fontWeight: 'bold',
         width: cardWidth*70/100,
     },
     icon: {
-        color: 'white',
+        color: WHITE,
         fontSize: 50,
         fontWeight: 'bold',
         textAlign: "center",
@@ -58,13 +58,13 @@ export const FoodStyle = StyleSheet.create({
         opacity: 1
     },
     remainBoxNotEmpty: {
-        backgroundColor: "#13b10c"
+        backgroundColor: GREEN
     },
     remainBoxEmpty: {
-        backgroundColor: "#ff0000",
+        backgroundColor: RED,
     },
     remaining: {
-        color: "#FFF",
+        color: WHITE,
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 20,

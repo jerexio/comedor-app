@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import { width } from "../../consts/consts";
 
 const {height} = Dimensions.get("window");
 
@@ -30,5 +31,17 @@ export const HomeStyle = StyleSheet.create({
         width: 13,
         borderRadius: 100,
         marginHorizontal: 6
+    },
+    emptyList: {
+        height: height*13/100,
+        width: width*90/100,
+        fontSize: 32,
+        fontWeight: "bold",
+        backgroundColor: "#fff",
+        padding: 5,
+        borderRadius: 15,
+        margin: 20,
+        elevation: 8,
+        textAlign: "center"
     }
 });

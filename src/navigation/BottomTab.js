@@ -10,6 +10,10 @@ import Informacion from '../screens/Information/Informacion';
 
 const Tab = createBottomTabNavigator();
 
+/**
+ * Tab de navegacion inferior.
+ * @returns 
+ */
 function BottomTab() {
   return (
     <Tab.Navigator 

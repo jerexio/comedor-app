@@ -1,11 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ModalFood from '../screens/ModalFood/ModalFood';
 import BottomTab from './BottomTab';
-import { BOTTOM_NAME, MODAL_NAME } from '../consts/consts';
+import Form from '../screens/Form/form'
+import { BOTTOM_NAME, FORM_NAME, MODAL_NAME } from '../consts/consts';
 const Stack = createNativeStackNavigator();
-import Form from '../screens/Form/form';
-import Informacion from '../screens/Information/Informacion';
 
+/**
+ * Contenedor de navegacion principal.
+ * @returns 
+ */
 const MainContainer = () => {
     return(
       <Stack.Navigator>
@@ -19,18 +22,11 @@ const MainContainer = () => {
         <Stack.Screen
           name={MODAL_NAME}
           component={ModalFood}
-          options={{
-            headerShown: false
-          }}
-        />
-        <Stack.Screen
-          name="form"
-          component={Form}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="informacion"
-          component={Informacion}
+          name={FORM_NAME}
+          component={Form}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

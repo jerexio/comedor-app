@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { height, width } from "../../consts/consts";
+import { BLACK, WHITE, height, width } from "../../consts/consts";
 
 const cardWidth = width*90/100;
 const cardHeight = height*40/100;
@@ -9,7 +9,7 @@ export const MiniCardStyle = StyleSheet.create({
         width: cardWidth,
         height: cardHeight,
         borderRadius: 20,
-        backgroundColor: "#000",
+        backgroundColor: BLACK,
         marginBottom: 20
     },
     image: {
@@ -30,7 +30,7 @@ export const MiniCardStyle = StyleSheet.create({
         overflow: "scroll",
     },
     text: {
-        color: 'white',
+        color: WHITE,
         fontSize: 25,
         lineHeight: 25,
         fontWeight: 'bold',
