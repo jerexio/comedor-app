@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { FormStyles } from './styles';
+import { FormStyles } from './styles.js';
 import { addPost } from '../../services/postMenu.js';
 import validateForm from '../../services/validateForm.js';
 import { MEALS, ALERT_FORM_GOOD, ALERT_FORM_BAD, FIRST_COLOR, SECOND_COLOR, THIRD_COLOR, INFO_NAME } from '../../consts/consts.js';
@@ -34,15 +34,24 @@ export default function Form({ navigation }) {
 
     //Dependiendo de la comida actual se determina el manejador
     const handleMenuSelection = () => {
+        const newComida = {
+            'nombre': nombre,
+            'ingredientes': ingredientes,
+            'precio': parseInt(precio),
+            'precioCarnet': parseInt(precioCarnet),
+            'foto': urlFoto,
+            'reservas': parseInt(reservas),
+            'likes': 20
+        };
         switch (selectedMenu) {
             case MEALS.BREAKFAST:
-                handleDesayuno();
+                handleDesayuno(newComida);
                 break;
             case MEALS.LUNCH:
-                handleAlmuerzo();
+                handleAlmuerzo(newComida);
                 break;
             case MEALS.SNACK:
-                handleMerienda();
+                handleMerienda(newComida);
                 break;
             case MEALS.UPLOADING:
 				setTimeout(async () => {
@@ -56,16 +65,8 @@ export default function Form({ navigation }) {
     };
 
     //Maneja la carga del desayuno
-    const handleDesayuno = () => {
-        const newDesayuno = {
-            'nombre': nombre,
-            'ingredientes': ingredientes,
-            'precio': parseInt(precio),
-            'precioCarnet': parseInt(precioCarnet),
-            'foto': urlFoto,
-            'reservas': parseInt(reservas),
-            'likes': 20
-        };
+    const handleDesayuno = (newDesayuno) => {
+        
         setMenu(prevMenu => ({
             ...prevMenu,
             "fecha": {
@@ -81,16 +82,7 @@ export default function Form({ navigation }) {
     };
 
     //Maneja la carga del almuerzo
-    const handleAlmuerzo = () => {
-        const newAlmuerzo = {
-            'nombre': nombre,
-            'ingredientes': ingredientes,
-            'precio': parseInt(precio),
-            'precioCarnet': parseInt(precioCarnet),
-            'foto': urlFoto,
-            'reservas': parseInt(reservas),
-            'likes': 20
-        };
+    const handleAlmuerzo = (newAlmuerzo) => {
         setMenu(prevMenu => ({
             ...prevMenu,
             almuerzos: [...prevMenu.almuerzos, newAlmuerzo]
@@ -100,16 +92,7 @@ export default function Form({ navigation }) {
     };
 
     //Maneja la carga de la merienda
-    const handleMerienda = () => {
-        const newMerienda = {
-            'nombre': nombre,
-            'ingredientes': ingredientes,
-            'precio': parseInt(precio),
-            'precioCarnet': parseInt(precioCarnet),
-            'foto': urlFoto,
-            'reservas': parseInt(reservas),
-            'likes': 20
-        };
+    const handleMerienda = (newMerienda) => {
         setMenu(prevMenu => ({
             ...prevMenu,
             meriendas: [...prevMenu.meriendas, newMerienda]

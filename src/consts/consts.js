@@ -17,8 +17,8 @@ export const MAP_IMG = require('../../assets/Mapa_comedor.png');
  * NAVIGATION NAMES
  ***********************************************************/
 export const HOME_NAME = "Home";
-export const COMING_NAME = "Proximas";
-export const INFO_NAME = "Informacion";
+export const COMING_NAME = "ComingSoon";
+export const INFO_NAME = "Information";
 export const BOTTOM_NAME = "BottomTab"
 export const MODAL_NAME = 'ModalFood';
 export const MAIN_NAME = 'MainContainer';

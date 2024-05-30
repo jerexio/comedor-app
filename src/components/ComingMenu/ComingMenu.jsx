@@ -14,15 +14,15 @@ const ComingMenu = ({menu}) => {
             <Text style={MenuComingStyle.text}>{menu.fecha.day} / {menu.fecha.month} / {menu.fecha.year}</Text>
             <Text style={MenuComingStyle.text}>Desayunos</Text>
             {menu.desayunos.map((item, index) => (
-                <MiniFoodCard subMenu={item}/>
+                <MiniFoodCard key={item.id} subMenu={item}/>
             ))}
             <Text style={MenuComingStyle.text}>Almuerzos</Text>
             {menu.almuerzos.map((item, index) => (
-                <MiniFoodCard subMenu={item}/>
+                <MiniFoodCard key={item.id} subMenu={item}/>
             ))}
             <Text style={MenuComingStyle.text}>Meriendas</Text>
             {menu.meriendas.map((item, index) => (
-                <MiniFoodCard subMenu={item}/>
+                <MiniFoodCard key={item.id} subMenu={item}/>
             ))}
         </View>
     );
