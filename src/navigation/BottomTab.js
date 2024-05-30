@@ -5,8 +5,8 @@ import * as consts from '../consts/consts';
 
 // Screens
 import Home from '../screens/Home/Home';
-import Proximas from '../screens/ComingSoon/Proximas';
-import Informacion from '../screens/Information/Informacion';
+import ComingSoon from '../screens/ComingSoon/ComingSoon';
+import Information from '../screens/Information/Information';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,7 +51,7 @@ function BottomTab() {
 
       <Tab.Screen
         name={consts.COMING_NAME}
-        component={Proximas}
+        component={ComingSoon}
         options={{ 
           headerShown: false // Oculta la barra de navegación superior
         }}
@@ -59,7 +59,7 @@ function BottomTab() {
 
       <Tab.Screen
         name={consts.INFO_NAME}
-        component={Informacion}
+        component={Information}
         options={{ 
           headerShown: false // Oculta la barra de navegación superior
         }}

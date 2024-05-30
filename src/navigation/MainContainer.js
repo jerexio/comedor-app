@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import ModalFood from '../screens/ModalFood/ModalFood';
 import BottomTab from './BottomTab';
-import Form from '../screens/Form/form'
+import Form from '../screens/Form/Form'
 import { BOTTOM_NAME, FORM_NAME, MODAL_NAME } from '../consts/consts';
 const Stack = createNativeStackNavigator();
 

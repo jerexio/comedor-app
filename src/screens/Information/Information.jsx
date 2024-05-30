@@ -1,13 +1,13 @@
 import { View, Text, Image, ScrollView, TouchableOpacity,Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {InformationStyles} from './styles';
-import { AREAS, COMEDOR_IMG, FORM_NAME, HOME_NAME, MAP_IMG, width } from '../../consts/consts';
+import { AREAS, COMEDOR_IMG, FORM_NAME, HOME_NAME, MAP_IMG } from '../../consts/consts';
 
 /**
  * Screen que muestra informacion sobre el comedor universitario.
  * @returns 
  */
-export default function Informacion({ navigation }) {
+export default function Information({ navigation }) {
     const data = [
         { id: 1, title: AREAS.SCHOLARSHIPS, href: AREAS.URL_SCHOLARSHIPS },
         { id: 2, title: AREAS.DEPORTS, href: AREAS.URL_DEPORTS },
@@ -16,16 +16,12 @@ export default function Informacion({ navigation }) {
         { id: 5, title: AREAS.SETTLEMENTS, href: AREAS.URL_SETTLEMENTS },
     ];
 
-    const numColumns = 2; // Número de columnas en la matriz de botones
-    const buttonContainerWidth = width - 80; // Calcula el ancho del contenedor de los botones
-    const buttonWidth = (buttonContainerWidth - (numColumns - 1) * 8) / numColumns; // 8 es el espacio horizontal entre los botones
-
     // Modifica el método renderButtons para que acepte el ancho de los botones como argumento
-    const renderButtons = (buttonWidth) => {
+    const renderButtons = () => {
         return data.map(item => (
             <TouchableOpacity
                 key={item.id}
-                style={[InformationStyles.item, { width: buttonWidth }]} // Aplica el nuevo ancho del botón
+                style={[InformationStyles.item, InformationStyles.buttonsWidth]} // Aplica el nuevo ancho del botón
                 onPress={() => handleLinkPress(item.href)}
             >
                 <Text style={InformationStyles.itemTitle}>{item.title}</Text>
@@ -63,8 +59,8 @@ export default function Informacion({ navigation }) {
 
                     <Text style={InformationStyles.text}>Otras áreas de la Secretaría de Bienestar</Text>
 
-                    <View style={[InformationStyles.buttonsContainer, { width: buttonContainerWidth }]}>
-                        {renderButtons(buttonWidth)}
+                    <View style={InformationStyles.buttonsContainer}>
+                        {renderButtons()}
                     </View>
 
                     <Text style={InformationStyles.text}>Dirección Comedor Neuquen: Avenida Argentina 1525</Text>

@@ -1,4 +1,7 @@
-import { StyleSheet,Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
+import { width } from "../../consts/consts";
+
+const buttonContainerWidth = width - 80; // Calcula el ancho del contenedor de los botones
 
 export const InformationStyles = StyleSheet.create({
     container: {
@@ -40,13 +43,13 @@ export const InformationStyles = StyleSheet.create({
     },
     description: {
         marginBottom: 20,
-        fontSize: 18,
+        fontSize: 17,
         textAlign: 'center',
         color: '#555',
     },
     text: {
         marginBottom: 10,
-        fontSize: 16,
+        fontSize: 18,
         textAlign: 'center',
         color: '#555',
     },
@@ -55,17 +58,23 @@ export const InformationStyles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         paddingHorizontal: 2,
+        width: buttonContainerWidth
+    },
+    buttonsWidth:{
+        width: buttonContainerWidth
     },
     item: {
         backgroundColor: '#5e7c68',
         padding: 20,
         marginVertical: 6,
         borderRadius: 10,
-        alignItems: 'center',
+        alignItems: 'center'
     },
     itemTitle: {
-        fontSize: 16,
+        fontSize: 20,
+        lineHeight: 20,
         color: '#fff',
         textAlign: 'center',
+        fontWeight: 'bold'
     },
 });
